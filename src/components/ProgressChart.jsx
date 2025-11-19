@@ -11,17 +11,22 @@ const ProgressChart = ({ history }) => {
         );
     }
 
-    // Calculate chart dimensions
+    // Calculate chart dimensions - responsive for mobile
     const maxAccuracy = 100;
     const chartHeight = 200;
-    const chartWidth = Math.max(400, history.length * 60);
-    const padding = { top: 20, right: 20, bottom: 40, left: 50 };
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
+    // On mobile, show only last 6 attempts to fit screen, but make scrollable
+    const displayHistory = isMobile && history.length > 6
+        ? history.slice(-6)
+        : history;
+
+    const barWidth = isMobile ? 45 : 40;
+    const barSpacing = isMobile ? 55 : 60;
+    const padding = { top: 20, right: 40, bottom: 40, left: 40 };
+    const chartWidth = Math.max(300, displayHistory.length * barSpacing + padding.left + padding.right);
     const innerWidth = chartWidth - padding.left - padding.right;
     const innerHeight = chartHeight - padding.top - padding.bottom;
-
-    // Calculate positions for bars
-    const barWidth = Math.min(40, innerWidth / history.length - 10);
-    const barSpacing = innerWidth / history.length;
 
     return (
         <div className="progress-chart">
@@ -57,10 +62,15 @@ const ProgressChart = ({ history }) => {
                     />
 
                     {/* Bars */}
-                    {history.map((record, index) => {
+                    {displayHistory.map((record, index) => {
                         const barHeight = (record.accuracy / maxAccuracy) * innerHeight;
                         const x = padding.left + index * barSpacing + (barSpacing - barWidth) / 2;
                         const y = padding.top + innerHeight - barHeight;
+
+                        // Calculate the actual attempt number (for labeling)
+                        const attemptNumber = isMobile && history.length > 6
+                            ? history.length - 6 + index + 1
+                            : index + 1;
 
                         return (
                             <g key={index}>
@@ -86,7 +96,7 @@ const ProgressChart = ({ history }) => {
                                     textAnchor="middle"
                                     className="attempt-label"
                                 >
-                                    {i18n.t('chart.attemptLabel', { number: index + 1 })}
+                                    {i18n.t('chart.attemptLabel', { number: attemptNumber })}
                                 </text>
                                 <text
                                     x={x + barWidth / 2}
