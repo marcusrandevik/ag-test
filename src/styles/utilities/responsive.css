@@ -18,6 +18,24 @@
     .control-panel {
         padding: 20px 25px;
         max-width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        margin: 0;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .game-layout {
+        padding-bottom: 200px;
+        /* Add space for fixed control panel */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .grid-wrapper {
+        margin-top: 10px;
     }
 
     .question-display {
@@ -176,6 +194,13 @@
 
     .control-panel {
         padding: 15px 20px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        margin: 0;
+        border-radius: 15px 15px 0 0;
     }
 
     .question-display {
