@@ -12,6 +12,7 @@
 @import './components/grid.css';
 @import './components/modal.css';
 @import './components/language-switcher.css';
+@import './components/progress-bar.css';
 
 /* 4. Screens */
 @import './screens/selection.css';

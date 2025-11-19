@@ -112,3 +112,22 @@
     font-weight: bold;
     color: var(--secondary-color);
 }
+
+.results-grid-section {
+    background: #FFFEF9;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    margin-bottom: 30px;
+}
+
+.results-grid-section h3 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.results-grid-section .grid-container {
+    margin: 0 auto;
+}

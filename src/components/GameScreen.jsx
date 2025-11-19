@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Grid from './Grid';
+import ProgressBar from './ProgressBar';
 import storageService from '../services/StorageService';
 import audioService from '../services/AudioService';
 import i18n from '../i18n/i18n';
@@ -21,6 +22,9 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete, limitQuestions,
     // Store the available questions for this game session
     const [availableQuestions, setAvailableQuestions] = useState([]);
     const availableQuestionsRef = useRef([]);
+
+    // Track answer history chronologically for progress bar
+    const [answerHistory, setAnswerHistory] = useState([]);
 
     // Ref to store the start time of the game
     const startTimeRef = useRef(Date.now());
@@ -112,7 +116,8 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete, limitQuestions,
                 correctGuesses: correctGuessesRef.current,
                 totalGuesses: totalGuessesRef.current,
                 timeSeconds: elapsedTime,
-                selectedTables: selectedTables
+                selectedTables: selectedTables,
+                gridState: gridStateRef.current
             };
 
             storageService.saveGameResult(selectedTables, gameResult);
@@ -157,6 +162,9 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete, limitQuestions,
             correctGuessesRef.current += 1;
             setCorrectGuesses(prev => prev + 1);
 
+            // Add to answer history
+            setAnswerHistory(prev => [...prev, 'correct']);
+
             const newGridState = {
                 ...gridStateRef.current,
                 [cellKey]: 'correct'
@@ -166,6 +174,9 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete, limitQuestions,
             audioService.playCorrect();
             generateQuestion();
         } else {
+            // Add to answer history
+            setAnswerHistory(prev => [...prev, 'incorrect']);
+
             const newGridState = {
                 ...gridStateRef.current,
                 [cellKey]: 'incorrect'
@@ -183,6 +194,11 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete, limitQuestions,
                 <button className="back-btn" onClick={onEndGame}>{i18n.t('game.back')}</button>
                 <h2>{i18n.t('game.timeLabel', { time: elapsedTime })}</h2>
             </div>
+
+            <ProgressBar
+                answerHistory={answerHistory}
+                availableQuestionsCount={availableQuestions.length}
+            />
 
             <div className="game-layout">
                 <div className="grid-wrapper">

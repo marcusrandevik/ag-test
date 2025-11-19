@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { toPng } from 'html-to-image';
 import ProgressChart from './ProgressChart';
+import Grid from './Grid';
 import storageService from '../services/StorageService';
 import i18n from '../i18n/i18n';
 
 const GameResults = ({ results, onPlayAgain, onBackToMenu }) => {
-    const { correctGuesses, totalGuesses, timeSeconds, selectedTables } = results;
+    const { correctGuesses, totalGuesses, timeSeconds, selectedTables, gridState } = results;
     const history = storageService.getGameHistory(selectedTables);
     const accuracy = Math.round((correctGuesses / totalGuesses) * 100);
     const shareCardRef = useRef(null);
@@ -103,6 +104,13 @@ const GameResults = ({ results, onPlayAgain, onBackToMenu }) => {
             </div>
 
             <ProgressChart history={history} />
+
+            {gridState && (
+                <div className="results-grid-section">
+                    <h3>Your Game Board</h3>
+                    <Grid gridState={gridState} selectedTables={selectedTables} />
+                </div>
+            )}
 
             <div className="results-actions">
                 <button
