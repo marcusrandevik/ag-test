@@ -1,11 +1,15 @@
 import en from './locales/en';
 import no from './locales/no';
 import sv from './locales/sv';
+import da from './locales/da';
+import es from './locales/es';
 
 const translations = {
     en,
     no,
     sv,
+    da,
+    es,
 };
 
 class I18nService {
@@ -107,6 +111,8 @@ class I18nService {
             en: 'English',
             no: 'Norsk',
             sv: 'Svenska',
+            da: 'Dansk',
+            es: 'Español',
         };
         return names[code] || code;
     }
