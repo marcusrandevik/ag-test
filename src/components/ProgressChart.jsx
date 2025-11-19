@@ -136,21 +136,46 @@ const ProgressChart = ({ history }) => {
                         const barHeight = (record.accuracy / maxAccuracy) * innerHeight;
                         const barTop = padding.top + innerHeight - barHeight;
 
-                        // If time label would be too close to accuracy label, position it below the point
-                        const labelOffset = (y - 10) < (barTop + 10) ? 20 : -10;
+                        // Improved label positioning logic
+                        // Check if time label would overlap with accuracy label (within 25px)
+                        const wouldOverlapAccuracy = Math.abs(y - barTop) < 25;
+
+                        // If overlapping, try positioning below the point
+                        // If point is in lower half of chart, position above instead
+                        let labelY;
+                        if (wouldOverlapAccuracy) {
+                            // If point is in lower half, position above; otherwise below
+                            labelY = y > (padding.top + innerHeight / 2) ? y - 15 : y + 20;
+                        } else {
+                            // Default: position above the point
+                            labelY = y - 10;
+                        }
+
+                        const timeText = `${record.timeSeconds}s`;
+                        const textWidth = timeText.length * 6; // Approximate width
 
                         return (
                             <g key={`time-${index}`}>
+                                {/* White background rectangle for better visibility */}
+                                <rect
+                                    x={x - textWidth / 2 - 2}
+                                    y={labelY - 10}
+                                    width={textWidth + 4}
+                                    height={14}
+                                    fill="white"
+                                    opacity="0.9"
+                                    rx="2"
+                                />
                                 <circle cx={x} cy={y} r="4" fill="#3498db" stroke="white" strokeWidth="2" />
                                 <text
                                     x={x}
-                                    y={y + labelOffset}
+                                    y={labelY}
                                     textAnchor="middle"
                                     className="time-label"
                                     fill="#3498db"
                                     fontWeight="bold"
                                 >
-                                    {record.timeSeconds}s
+                                    {timeText}
                                 </text>
                             </g>
                         );

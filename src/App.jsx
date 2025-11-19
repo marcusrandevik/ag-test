@@ -62,7 +62,7 @@ function App() {
       {gameState === 'playing' && (
         <GameScreen
           selectedTables={selectedTables}
-          onBack={handleBackToMenu}
+          onEndGame={handleBackToMenu}
           onGameComplete={handleGameComplete}
         />
       )}

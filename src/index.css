@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #FF6B6B;
-  --secondary-color: #4ECDC4;
-  --accent-color: #FFE66D;
-  --dark-color: #2C3E50;
-  --light-color: #F7F9F9;
+  --primary-color: #FF7B6B;
+  --secondary-color: #4DD4D4;
+  --accent-color: #F5E6A8;
+  --dark-color: #2C4A5E;
+  --light-color: #F5E6A8;
   --success-color: #2ECC71;
-  --error-color: #E74C3C;
+  --error-color: #FF7B6B;
   --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -40,7 +40,7 @@ p {
 
 /* Selection Screen */
 .selection-screen {
-  background: white;
+  background: #FFFEF9;
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -115,7 +115,7 @@ p {
 /* Game Placeholder */
 .game-placeholder {
   padding: 40px;
-  background: white;
+  background: #FFFEF9;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
@@ -138,13 +138,22 @@ p {
 }
 
 .back-btn {
-  background: none;
+  background: #FFFEF9;
   border: 2px solid var(--dark-color);
   padding: 8px 15px;
   border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
   color: var(--dark-color);
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: var(--secondary-color);
+  color: white;
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 212, 212, 0.4);
 }
 
 .game-layout {
@@ -157,7 +166,7 @@ p {
 /* Grid */
 .grid-container {
   display: inline-block;
-  background: white;
+  background: #FFFEF9;
   padding: 10px;
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
@@ -233,7 +242,7 @@ p {
 
 /* Control Panel */
 .control-panel {
-  background: white;
+  background: #FFFEF9;
   padding: 20px 30px;
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
@@ -430,7 +439,7 @@ p {
 }
 
 .result-card {
-  background: white;
+  background: #FFFEF9;
   padding: 25px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -492,7 +501,7 @@ p {
 }
 
 .back-menu-btn {
-  background-color: white;
+  background-color: #FFFEF9;
   color: var(--dark-color);
   border: 2px solid var(--dark-color);
 }
@@ -504,7 +513,7 @@ p {
 
 /* Progress Chart */
 .progress-chart {
-  background: white;
+  background: #FFFEF9;
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -696,7 +705,7 @@ p {
   width: 44px;
   height: 44px;
   padding: 10px;
-  background: white;
+  background: #FFFEF9;
   color: var(--dark-color);
   border: 2px solid var(--dark-color);
   border-radius: 50%;
@@ -719,7 +728,7 @@ p {
   position: absolute;
   top: 55px;
   right: 0;
-  background: white;
+  background: #FFFEF9;
   border: 2px solid var(--dark-color);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -743,7 +752,7 @@ p {
 .lang-option {
   width: 100%;
   padding: 12px 16px;
-  background: white;
+  background: #FFFEF9;
   color: var(--dark-color);
   border: none;
   text-align: left;
@@ -793,7 +802,7 @@ p {
 
 /* Share Card */
 .share-card {
-  background: white;
+  background: #FFFEF9;
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -883,7 +892,7 @@ p {
   gap: 15px;
   margin-bottom: 25px;
   padding: 15px 20px;
-  background: white;
+  background: #FFFEF9;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
@@ -908,7 +917,7 @@ p {
   padding: 8px 16px;
   border: 2px solid #e0e0e0;
   border-radius: 20px;
-  background: white;
+  background: #FFFEF9;
   color: #7f8c8d;
   font-size: 0.9rem;
   font-weight: 500;
@@ -937,7 +946,7 @@ p {
 }
 
 .history-card {
-  background: white;
+  background: #FFFEF9;
   padding: 15px 20px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -1019,7 +1028,7 @@ p {
 .no-history {
   text-align: center;
   padding: 50px;
-  background: white;
+  background: #FFFEF9;
   border-radius: 20px;
   color: #95a5a6;
   font-style: italic;
@@ -1042,7 +1051,7 @@ p {
 }
 
 .modal-content {
-  background: white;
+  background: #FFFEF9;
   padding: 30px;
   border-radius: 20px;
   width: 100%;
