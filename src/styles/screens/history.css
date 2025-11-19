@@ -1,0 +1,51 @@
+.history-screen {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.history-header h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.history-filter {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    background: #FFFEF9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.filter-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    white-space: nowrap;
+    padding-top: 8px;
+    flex-shrink: 0;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex: 1;
+    min-width: 0;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

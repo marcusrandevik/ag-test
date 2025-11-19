@@ -1,0 +1,10 @@
+:root {
+    --primary-color: #FF7B6B;
+    --secondary-color: #4DD4D4;
+    --accent-color: #F5E6A8;
+    --dark-color: #2C4A5E;
+    --light-color: #F5E6A8;
+    --success-color: #2ECC71;
+    --error-color: #FF7B6B;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

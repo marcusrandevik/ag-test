@@ -5,7 +5,6 @@ import GameResults from './components/GameResults';
 import HistoryScreen from './components/HistoryScreen'; // New import
 import LanguageSwitcher from './components/LanguageSwitcher'; // New import
 import storageService from './services/StorageService';
-import './App.css';
 import i18n from './i18n/i18n';
 
 function App() {

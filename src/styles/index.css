@@ -1,0 +1,24 @@
+/* Main CSS Entry Point - Imports all modular styles */
+
+/* 1. Variables */
+@import './variables.css';
+
+/* 2. Base Styles */
+@import './base.css';
+
+/* 3. Components */
+@import './components/buttons.css';
+@import './components/cards.css';
+@import './components/grid.css';
+@import './components/modal.css';
+@import './components/language-switcher.css';
+
+/* 4. Screens */
+@import './screens/selection.css';
+@import './screens/game.css';
+@import './screens/results.css';
+@import './screens/history.css';
+
+/* 5. Utilities */
+@import './utilities/animations.css';
+@import './utilities/responsive.css';
