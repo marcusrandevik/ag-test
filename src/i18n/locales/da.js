@@ -5,6 +5,8 @@ export default {
         subtitle: "Vælg de tabeller, du vil øve:",
         start: "Start spil",
         viewHistory: "Se historik",
+        limitQuestions: "Begræns antal spørgsmål",
+        outOf: "ud af {total} spørgsmål",
     },
 
     // Game Screen

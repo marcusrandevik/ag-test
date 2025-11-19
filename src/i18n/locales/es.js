@@ -5,6 +5,8 @@ export default {
         subtitle: "Selecciona las tablas que quieres practicar:",
         start: "Comenzar juego",
         viewHistory: "Ver historial",
+        limitQuestions: "Limitar número de preguntas",
+        outOf: "de {total} preguntas",
     },
 
     // Game Screen

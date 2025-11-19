@@ -12,6 +12,8 @@ function App() {
   const [gameState, setGameState] = useState('selection'); // 'selection', 'playing', 'results', 'history'
   const [selectedTables, setSelectedTables] = useState([]);
   const [gameResults, setGameResults] = useState(null);
+  const [limitQuestions, setLimitQuestions] = useState(false);
+  const [questionLimit, setQuestionLimit] = useState(10);
 
   const handleToggleTable = (num) => {
     setSelectedTables(prev =>
@@ -47,6 +49,14 @@ function App() {
     setGameState('history');
   };
 
+  const handleToggleLimitQuestions = () => {
+    setLimitQuestions(prev => !prev);
+  };
+
+  const handleQuestionLimitChange = (value) => {
+    setQuestionLimit(value);
+  };
+
   return (
     <div className="app-container">
       <LanguageSwitcher />
@@ -57,6 +67,10 @@ function App() {
           onToggleTable={handleToggleTable}
           onStartGame={handleStartGame}
           onViewHistory={handleViewHistory}
+          limitQuestions={limitQuestions}
+          questionLimit={questionLimit}
+          onToggleLimitQuestions={handleToggleLimitQuestions}
+          onQuestionLimitChange={handleQuestionLimitChange}
         />
       )}
       {gameState === 'playing' && (
@@ -64,6 +78,8 @@ function App() {
           selectedTables={selectedTables}
           onEndGame={handleBackToMenu}
           onGameComplete={handleGameComplete}
+          limitQuestions={limitQuestions}
+          questionLimit={questionLimit}
         />
       )}
       {gameState === 'results' && gameResults && (

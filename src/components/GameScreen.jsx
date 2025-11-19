@@ -4,7 +4,7 @@ import storageService from '../services/StorageService';
 import audioService from '../services/AudioService';
 import i18n from '../i18n/i18n';
 
-const GameScreen = ({ selectedTables, onEndGame, onGameComplete }) => {
+const GameScreen = ({ selectedTables, onEndGame, onGameComplete, limitQuestions, questionLimit }) => {
     const [gridState, setGridState] = useState({});
     const gridStateRef = useRef({});
     const [currentQuestion, setCurrentQuestion] = useState(null);
@@ -18,6 +18,10 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete }) => {
     const totalGuessesRef = useRef(0);
     const inputRef = useRef(null);
 
+    // Store the available questions for this game session
+    const [availableQuestions, setAvailableQuestions] = useState([]);
+    const availableQuestionsRef = useRef([]);
+
     // Ref to store the start time of the game
     const startTimeRef = useRef(Date.now());
     // Ref to store the interval ID
@@ -30,6 +34,27 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete }) => {
 
     // Initialize game and start timer
     useEffect(() => {
+        // Generate all possible questions
+        const allQuestions = [];
+        selectedTables.forEach(row => {
+            for (let col = 1; col <= 10; col++) {
+                allQuestions.push({ row, col });
+            }
+        });
+
+        // If limiting questions, randomly select a subset
+        let questionsToUse;
+        if (limitQuestions && questionLimit < allQuestions.length) {
+            // Shuffle and take the first N questions
+            const shuffled = [...allQuestions].sort(() => Math.random() - 0.5);
+            questionsToUse = shuffled.slice(0, questionLimit);
+        } else {
+            questionsToUse = allQuestions;
+        }
+
+        setAvailableQuestions(questionsToUse);
+        availableQuestionsRef.current = questionsToUse;
+
         generateQuestion();
         startTimeRef.current = Date.now();
         setIsGameActive(true);
@@ -67,12 +92,12 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete }) => {
     const generateQuestion = () => {
         const currentGridState = gridStateRef.current;
         const possibleQuestions = [];
-        selectedTables.forEach(row => {
-            for (let col = 1; col <= 10; col++) {
-                const key = `${row}-${col}`;
-                if (currentGridState[key] !== 'correct' && currentGridState[key] !== 'incorrect') {
-                    possibleQuestions.push({ row, col });
-                }
+
+        // Use the predefined available questions instead of all possible questions
+        availableQuestionsRef.current.forEach(({ row, col }) => {
+            const key = `${row}-${col}`;
+            if (currentGridState[key] !== 'correct' && currentGridState[key] !== 'incorrect') {
+                possibleQuestions.push({ row, col });
             }
         });
 

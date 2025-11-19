@@ -5,6 +5,8 @@ export default {
         subtitle: "Velg gangetabellene du vil øve på:",
         start: "Start spill",
         viewHistory: "Se historikk",
+        limitQuestions: "Begrens antall spørsmål",
+        outOf: "av {total} spørsmål",
     },
 
     // Game Screen

@@ -5,6 +5,8 @@ export default {
         subtitle: "Välj de tabeller du vill öva på:",
         start: "Starta spel",
         viewHistory: "Visa historik",
+        limitQuestions: "Begränsa antal frågor",
+        outOf: "av {total} frågor",
     },
 
     // Game Screen
