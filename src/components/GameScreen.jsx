@@ -86,7 +86,8 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete }) => {
             const gameResult = {
                 correctGuesses: correctGuessesRef.current,
                 totalGuesses: totalGuessesRef.current,
-                timeSeconds: elapsedTime
+                timeSeconds: elapsedTime,
+                selectedTables: selectedTables
             };
 
             storageService.saveGameResult(selectedTables, gameResult);

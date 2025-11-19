@@ -132,12 +132,19 @@ const ProgressChart = ({ history }) => {
                         const x = padding.left + index * barSpacing + barWidth / 2;
                         const y = padding.top + innerHeight - ((record.timeSeconds / maxTime) * (innerHeight * 0.7));
 
+                        // Calculate bar top position to check for overlap
+                        const barHeight = (record.accuracy / maxAccuracy) * innerHeight;
+                        const barTop = padding.top + innerHeight - barHeight;
+
+                        // If time label would be too close to accuracy label, position it below the point
+                        const labelOffset = (y - 10) < (barTop + 10) ? 20 : -10;
+
                         return (
                             <g key={`time-${index}`}>
                                 <circle cx={x} cy={y} r="4" fill="#3498db" stroke="white" strokeWidth="2" />
                                 <text
                                     x={x}
-                                    y={y - 10}
+                                    y={y + labelOffset}
                                     textAnchor="middle"
                                     className="time-label"
                                     fill="#3498db"

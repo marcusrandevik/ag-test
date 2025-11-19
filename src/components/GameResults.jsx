@@ -1,17 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { toPng } from 'html-to-image';
 import ProgressChart from './ProgressChart';
+import storageService from '../services/StorageService';
 import i18n from '../i18n/i18n';
 
-const GameResults = ({
-    correctGuesses,
-    totalGuesses,
-    timeSeconds,
-    selectedTables,
-    history,
-    onPlayAgain,
-    onBackToMenu
-}) => {
+const GameResults = ({ results, onPlayAgain, onBackToMenu }) => {
+    const { correctGuesses, totalGuesses, timeSeconds, selectedTables } = results;
+    const history = storageService.getGameHistory(selectedTables);
     const accuracy = Math.round((correctGuesses / totalGuesses) * 100);
     const shareCardRef = useRef(null);
     const [isGenerating, setIsGenerating] = useState(false);

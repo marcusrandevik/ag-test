@@ -3,7 +3,8 @@ export default {
     selection: {
         title: "Multiplication Game",
         subtitle: "Select the tables you want to practice:",
-        startButton: "Start Game",
+        start: "Start Game",
+        viewHistory: "View History",
     },
 
     // Game Screen
@@ -19,6 +20,11 @@ export default {
     results: {
         title: "Game Complete! 🎉",
         scoreLabel: "Score",
+        score: "Score",
+        correct: "Correct",
+        time: "Time",
+        avgTime: "Avg Time",
+        date: "Date",
         scoreFormat: "{correct}/{total}",
         accuracyFormat: "{accuracy}% Accuracy",
         timeLabel: "Time",
@@ -29,12 +35,25 @@ export default {
             slow: "Keep practicing!",
         },
         tablesLabel: "Tables",
+        tables: "Tables",
         tablesCount: "{count} table",
         tablesCountPlural: "{count} tables",
         avgTimeLabel: "Avg Time",
         avgTimeSubtitle: "Per Question",
         playAgain: "Play Again",
         backToMenu: "Back to Menu",
+        share: "Share Results",
+        generating: "Generating...",
+    },
+
+    // History Screen
+    history: {
+        title: "History",
+        noData: "No games played yet.",
+        noDataForFilter: "No games found for this filter.",
+        detailsTitle: "Game Details",
+        filterLabel: "Filter by tables",
+        allTables: "All tables",
     },
 
     // Progress Chart

@@ -3,7 +3,8 @@ export default {
     selection: {
         title: "Multiplikasjonsspill",
         subtitle: "Velg gangetabellene du vil øve på:",
-        startButton: "Start spill",
+        start: "Start spill",
+        viewHistory: "Se historikk",
     },
 
     // Game Screen
@@ -19,6 +20,11 @@ export default {
     results: {
         title: "Spillet er ferdig! 🎉",
         scoreLabel: "Poengsum",
+        score: "Poengsum",
+        correct: "Riktig",
+        time: "Tid",
+        avgTime: "Gj.snitt tid",
+        date: "Dato",
         scoreFormat: "{correct}/{total}",
         accuracyFormat: "{accuracy}% nøyaktighet",
         timeLabel: "Tid",
@@ -29,12 +35,25 @@ export default {
             slow: "Fortsett å øve!",
         },
         tablesLabel: "Tabeller",
+        tables: "Tabeller",
         tablesCount: "{count} tabell",
         tablesCountPlural: "{count} tabeller",
         avgTimeLabel: "Gj.snitt tid",
         avgTimeSubtitle: "Per spørsmål",
         playAgain: "Spill igjen",
         backToMenu: "Tilbake til meny",
+        share: "Del resultater",
+        generating: "Genererer...",
+    },
+
+    // History Screen
+    history: {
+        title: "Historikk",
+        noData: "Ingen spill spilt ennå.",
+        noDataForFilter: "Ingen spill funnet for dette filteret.",
+        detailsTitle: "Spilldetaljer",
+        filterLabel: "Filtrer etter tabeller",
+        allTables: "Alle tabeller",
     },
 
     // Progress Chart

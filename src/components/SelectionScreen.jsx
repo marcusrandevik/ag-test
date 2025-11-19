@@ -2,7 +2,7 @@ import React from 'react';
 import i18n from '../i18n/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
 
-const SelectionScreen = ({ selectedTables, toggleTable, onStartGame }) => {
+const SelectionScreen = ({ selectedTables, onToggleTable, onStartGame, onViewHistory }) => {
   const tables = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
@@ -15,7 +15,7 @@ const SelectionScreen = ({ selectedTables, toggleTable, onStartGame }) => {
           <button
             key={num}
             className={`table-btn ${selectedTables.includes(num) ? 'selected' : ''}`}
-            onClick={() => toggleTable(num)}
+            onClick={() => onToggleTable(num)}
           >
             {num}x
           </button>
@@ -26,7 +26,15 @@ const SelectionScreen = ({ selectedTables, toggleTable, onStartGame }) => {
         onClick={onStartGame}
         disabled={selectedTables.length === 0}
       >
-        {i18n.t('selection.startButton')}
+        {i18n.t('selection.start')}
+      </button>
+
+      <button
+        className="history-btn"
+        onClick={onViewHistory}
+        style={{ marginTop: '20px', background: 'none', border: 'none', color: '#7f8c8d', textDecoration: 'underline', cursor: 'pointer', fontSize: '1rem' }}
+      >
+        {i18n.t('selection.viewHistory', 'View History')}
       </button>
     </div>
   );
