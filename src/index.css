@@ -568,17 +568,63 @@ p {
 
 /* Responsive adjustments for results */
 @media (max-width: 768px) {
+  .game-results {
+    padding: 0 10px;
+  }
+
+  .share-card {
+    padding: 20px 15px;
+  }
+
+  .results-summary {
+    gap: 12px;
+    max-width: 100%;
+  }
+
+  .result-card {
+    padding: 15px 10px;
+  }
+
+  .result-label {
+    font-size: 0.75rem;
+  }
+
   .result-value {
-    font-size: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .result-value.tables-list {
+    font-size: 1.3rem;
+  }
+
+  .result-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .progress-chart {
+    padding: 15px;
+  }
+
+  .progress-chart h3 {
+    font-size: 1.2rem;
+  }
+
+  .chart-stats {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .results-actions {
     flex-direction: column;
+    padding: 0 10px;
   }
 
+  .share-btn,
   .play-again-btn,
   .back-menu-btn {
     width: 100%;
+    font-size: 1rem;
+    padding: 12px 20px;
   }
 }
 
@@ -761,20 +807,4 @@ p {
   justify-content: center;
   margin-top: 30px;
   flex-wrap: wrap;
-}
-
-@media (max-width: 768px) {
-  .share-card {
-    padding: 20px;
-  }
-
-  .results-actions {
-    flex-direction: column;
-  }
-
-  .share-btn,
-  .play-again-btn,
-  .back-menu-btn {
-    width: 100%;
-  }
 }
