@@ -16,10 +16,15 @@ const ProgressChart = ({ history }) => {
     const chartHeight = 200;
     const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
-    // On mobile, show only last 6 attempts to fit screen, but make scrollable
-    const displayHistory = isMobile && history.length > 6
-        ? history.slice(-6)
+    // Limit history items: 6 for mobile, 10 for desktop
+    const maxItems = isMobile ? 6 : 10;
+    const displayHistory = history.length > maxItems
+        ? history.slice(-maxItems)
         : history;
+
+    // Calculate maxTime based on displayed items only to avoid outliers flattening the chart
+    // Ensure minimum of 5s to prevent division by zero or extreme scaling for very fast times
+    const maxTime = Math.max(...displayHistory.map(h => h.timeSeconds), 5);
 
     const barWidth = isMobile ? 45 : 40;
     const barSpacing = isMobile ? 55 : 60;
@@ -28,12 +33,21 @@ const ProgressChart = ({ history }) => {
     const innerWidth = chartWidth - padding.left - padding.right;
     const innerHeight = chartHeight - padding.top - padding.bottom;
 
+    // Generate path for time line
+    const timePoints = displayHistory.map((record, index) => {
+        const x = padding.left + index * barSpacing + barWidth / 2; // Center of bar
+        // Invert Y because SVG coordinates start from top
+        // Scale time to fit in 70% of height to avoid overlap with high bars
+        const y = padding.top + innerHeight - ((record.timeSeconds / maxTime) * (innerHeight * 0.7));
+        return `${x},${y}`;
+    }).join(' ');
+
     return (
         <div className="progress-chart">
             <h3>{i18n.t('chart.title')}</h3>
             <div className="chart-container">
                 <svg width={chartWidth} height={chartHeight} className="chart-svg">
-                    {/* Y-axis labels */}
+                    {/* Y-axis labels (Accuracy) */}
                     <text x={padding.left - 10} y={padding.top} textAnchor="end" className="axis-label">100%</text>
                     <text x={padding.left - 10} y={padding.top + innerHeight / 2} textAnchor="end" className="axis-label">50%</text>
                     <text x={padding.left - 10} y={padding.top + innerHeight} textAnchor="end" className="axis-label">0%</text>
@@ -61,15 +75,15 @@ const ProgressChart = ({ history }) => {
                         className="grid-line"
                     />
 
-                    {/* Bars */}
+                    {/* Bars (Accuracy) */}
                     {displayHistory.map((record, index) => {
                         const barHeight = (record.accuracy / maxAccuracy) * innerHeight;
                         const x = padding.left + index * barSpacing + (barSpacing - barWidth) / 2;
                         const y = padding.top + innerHeight - barHeight;
 
                         // Calculate the actual attempt number (for labeling)
-                        const attemptNumber = isMobile && history.length > 6
-                            ? history.length - 6 + index + 1
+                        const attemptNumber = history.length > maxItems
+                            ? history.length - maxItems + index + 1
                             : index + 1;
 
                         return (
@@ -81,6 +95,7 @@ const ProgressChart = ({ history }) => {
                                     height={barHeight}
                                     className="chart-bar"
                                     fill={record.accuracy >= 80 ? '#2ECC71' : record.accuracy >= 60 ? '#FFE66D' : '#FF6B6B'}
+                                    opacity="0.7"
                                 />
                                 <text
                                     x={x + barWidth / 2}
@@ -98,11 +113,35 @@ const ProgressChart = ({ history }) => {
                                 >
                                     {i18n.t('chart.attemptLabel', { number: attemptNumber })}
                                 </text>
+                            </g>
+                        );
+                    })}
+
+                    {/* Time Line */}
+                    <polyline
+                        points={timePoints}
+                        fill="none"
+                        stroke="#3498db"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+
+                    {/* Time Points */}
+                    {displayHistory.map((record, index) => {
+                        const x = padding.left + index * barSpacing + barWidth / 2;
+                        const y = padding.top + innerHeight - ((record.timeSeconds / maxTime) * (innerHeight * 0.7));
+
+                        return (
+                            <g key={`time-${index}`}>
+                                <circle cx={x} cy={y} r="4" fill="#3498db" stroke="white" strokeWidth="2" />
                                 <text
-                                    x={x + barWidth / 2}
-                                    y={padding.top + innerHeight + 30}
+                                    x={x}
+                                    y={y - 10}
                                     textAnchor="middle"
                                     className="time-label"
+                                    fill="#3498db"
+                                    fontWeight="bold"
                                 >
                                     {record.timeSeconds}s
                                 </text>

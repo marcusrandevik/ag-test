@@ -39,12 +39,27 @@ p {
 }
 
 /* Selection Screen */
+.selection-screen {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
 .tables-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
   margin-bottom: 40px;
-  justify-items: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .table-btn {
@@ -219,9 +234,9 @@ p {
 /* Control Panel */
 .control-panel {
   background: white;
-  padding: 25px 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   width: 100%;
   max-width: 550px;
   min-width: 300px;
@@ -241,7 +256,6 @@ p {
   font-weight: bold;
   color: var(--dark-color);
   margin: 0;
-  /* Remove margin-bottom */
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -333,6 +347,20 @@ p {
 @media (max-width: 480px) {
   .app-container {
     padding: 10px;
+  }
+
+  .selection-screen {
+    padding: 20px 15px;
+  }
+
+  .tables-grid {
+    gap: 10px;
+  }
+
+  .table-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
   }
 
   .grid-container {
@@ -477,8 +505,8 @@ p {
 /* Progress Chart */
 .progress-chart {
   background: white;
-  padding: 25px;
-  border-radius: 15px;
+  padding: 30px;
+  border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
 }
@@ -494,6 +522,7 @@ p {
   margin-bottom: 20px;
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
+  padding: 0;
 }
 
 .chart-svg {
@@ -780,22 +809,6 @@ p {
   margin: 0;
 }
 
-.progress-chart {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
-}
-
-.chart-container {
-  overflow-x: auto;
-  margin-bottom: 20px;
-  -webkit-overflow-scrolling: touch;
-  max-width: 100%;
-  padding: 0;
-}
-
 /* Share Button */
 .share-btn {
   padding: 15px 30px;
@@ -842,13 +855,4 @@ p {
   to {
     transform: rotate(360deg);
   }
-}
-
-/* Update results actions layout */
-.results-actions {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-top: 30px;
-  flex-wrap: wrap;
 }
