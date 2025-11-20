@@ -151,7 +151,7 @@ const ProgressChart = ({ history }) => {
                             labelY = y - 10;
                         }
 
-                        const timeText = `${record.timeSeconds}s`;
+                        const timeText = `${record.timeSeconds.toFixed(2)}s`;
                         const textWidth = timeText.length * 6; // Approximate width
 
                         return (

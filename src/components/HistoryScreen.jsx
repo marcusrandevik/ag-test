@@ -107,7 +107,7 @@ const HistoryScreen = ({ onBack }) => {
                             </div>
                             <div className="history-stats">
                                 <span>{game.correctGuesses}/{game.totalGuesses}</span>
-                                <span>{game.timeSeconds}s</span>
+                                <span>{game.timeSeconds.toFixed(2)}s</span>
                             </div>
                             <span className={`history-score ${game.accuracy >= 80 ? 'high' : game.accuracy >= 60 ? 'medium' : 'low'}`}>
                                 {game.accuracy}%
@@ -144,11 +144,11 @@ const HistoryScreen = ({ onBack }) => {
                                 </div>
                                 <div className="detail-stat">
                                     <span className="stat-label">{i18n.t('results.time', 'Time')}</span>
-                                    <span className="stat-value">{selectedGame.timeSeconds}s</span>
+                                    <span className="stat-value">{selectedGame.timeSeconds.toFixed(2)}s</span>
                                 </div>
                                 <div className="detail-stat">
                                     <span className="stat-label">{i18n.t('results.avgTime', 'Avg Time')}</span>
-                                    <span className="stat-value">{(selectedGame.timeSeconds / selectedGame.totalGuesses).toFixed(1)}s</span>
+                                    <span className="stat-value">{(selectedGame.timeSeconds / selectedGame.totalGuesses).toFixed(2)}s</span>
                                 </div>
                             </div>
 

@@ -71,8 +71,8 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete, limitQuestions,
                 clearInterval(timerIntervalRef.current);
             }
             timerIntervalRef.current = setInterval(() => {
-                setElapsedTime(Math.floor((Date.now() - startTimeRef.current) / 1000));
-            }, 1000);
+                setElapsedTime((Date.now() - startTimeRef.current) / 1000);
+            }, 100);
         } else {
             if (timerIntervalRef.current) {
                 clearInterval(timerIntervalRef.current);
@@ -130,7 +130,7 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete, limitQuestions,
             setMessage(i18n.t('common.gameOver', {
                 correct: correctGuessesRef.current,
                 total: totalGuessesRef.current,
-                time: elapsedTime
+                time: elapsedTime.toFixed(2)
             }));
             setCurrentQuestion(null);
             return;
@@ -192,7 +192,7 @@ const GameScreen = ({ selectedTables, onEndGame, onGameComplete, limitQuestions,
         <div className="game-screen">
             <div className="game-header">
                 <button className="back-btn" onClick={onEndGame}>{i18n.t('game.back')}</button>
-                <h2>{i18n.t('game.timeLabel', { time: elapsedTime })}</h2>
+                <h2>{i18n.t('game.timeLabel', { time: elapsedTime.toFixed(2) })}</h2>
             </div>
 
             <ProgressBar

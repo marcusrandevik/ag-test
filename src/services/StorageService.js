@@ -21,7 +21,7 @@ class StorageService {
     /**
      * Save a game result
      * @param {Array<number>} tables - Selected multiplication tables
-     * @param {Object} result - Game result { correctGuesses, totalGuesses, timeSeconds }
+     * @param {Object} result - Game result { correctGuesses, totalGuesses, timeSeconds (with decimal precision) }
      */
     saveGameResult(tables, result) {
         const tableKey = this.generateTableKey(tables);

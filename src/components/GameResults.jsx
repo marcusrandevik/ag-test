@@ -47,7 +47,7 @@ const GameResults = ({ results, onPlayAgain, onBackToMenu }) => {
                         await navigator.share({
                             files: [file],
                             title: 'My Multiplication Game Score',
-                            text: `I scored ${correctGuesses}/${totalGuesses} (${accuracy}%) in ${timeSeconds}s!`,
+                            text: `I scored ${correctGuesses}/${totalGuesses} (${accuracy}%) in ${timeSeconds.toFixed(2)}s!`,
                         });
                     }
                 } catch (shareError) {
@@ -80,7 +80,7 @@ const GameResults = ({ results, onPlayAgain, onBackToMenu }) => {
 
                     <div className="result-card">
                         <div className="result-label">{i18n.t('results.timeLabel')}</div>
-                        <div className="result-value">{i18n.t('results.timeValue', { time: timeSeconds })}</div>
+                        <div className="result-value">{i18n.t('results.timeValue', { time: timeSeconds.toFixed(2) })}</div>
                         <div className="result-subtitle">{getTimeFeedback()}</div>
                     </div>
 
@@ -97,7 +97,7 @@ const GameResults = ({ results, onPlayAgain, onBackToMenu }) => {
 
                     <div className="result-card">
                         <div className="result-label">{i18n.t('results.avgTimeLabel')}</div>
-                        <div className="result-value">{(timeSeconds / totalGuesses).toFixed(1)}s</div>
+                        <div className="result-value">{(timeSeconds / totalGuesses).toFixed(2)}s</div>
                         <div className="result-subtitle">{i18n.t('results.avgTimeSubtitle')}</div>
                     </div>
                 </div>
