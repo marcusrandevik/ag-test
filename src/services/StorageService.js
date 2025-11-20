@@ -21,7 +21,7 @@ class StorageService {
     /**
      * Save a game result
      * @param {Array<number>} tables - Selected multiplication tables
-     * @param {Object} result - Game result { correctGuesses, totalGuesses, timeSeconds (with decimal precision), gridState }
+     * @param {Object} result - Game result { correctGuesses, totalGuesses, timeSeconds (with decimal precision) }
      */
     saveGameResult(tables, result) {
         const tableKey = this.generateTableKey(tables);
@@ -36,8 +36,7 @@ class StorageService {
             correctGuesses: result.correctGuesses,
             totalGuesses: result.totalGuesses,
             timeSeconds: result.timeSeconds,
-            accuracy: Math.round((result.correctGuesses / result.totalGuesses) * 100),
-            gridState: result.gridState
+            accuracy: Math.round((result.correctGuesses / result.totalGuesses) * 100)
         };
 
         data[tableKey].push(gameRecord);

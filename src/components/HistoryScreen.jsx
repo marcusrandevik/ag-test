@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import storageService from '../services/StorageService';
 import ProgressChart from './ProgressChart';
-import Grid from './Grid';
 import i18n from '../i18n/i18n';
 
 const HistoryScreen = ({ onBack }) => {
@@ -152,13 +151,6 @@ const HistoryScreen = ({ onBack }) => {
                                     <span className="stat-value">{(selectedGame.timeSeconds / selectedGame.totalGuesses).toFixed(2)}s</span>
                                 </div>
                             </div>
-
-                            {selectedGame.gridState && (
-                                <div className="modal-grid-section">
-                                    <h4>{i18n.t('history.gameBoard', 'Game Board')}</h4>
-                                    <Grid gridState={selectedGame.gridState} selectedTables={selectedGame.selectedTables} />
-                                </div>
-                            )}
 
                             <div className="modal-chart">
                                 <ProgressChart history={storageService.getGameHistory(selectedGame.selectedTables)} />
