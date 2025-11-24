@@ -56,6 +56,7 @@ export default {
         detailsTitle: "Spilldetaljer",
         filterLabel: "Filtrer etter tabeller",
         allTables: "Alle tabeller",
+        boardState: "Resultater",
     },
 
     // Progress Chart

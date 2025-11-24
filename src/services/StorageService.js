@@ -1,4 +1,4 @@
-import LocalStorageAdapter from './LocalStorageAdapter';
+import LocalStorageAdapter from './LocalStorageAdapter.js';
 
 /**
  * Generic storage service for game history
@@ -36,7 +36,11 @@ class StorageService {
             correctGuesses: result.correctGuesses,
             totalGuesses: result.totalGuesses,
             timeSeconds: result.timeSeconds,
-            accuracy: Math.round((result.correctGuesses / result.totalGuesses) * 100)
+            accuracy: Math.round((result.correctGuesses / result.totalGuesses) * 100),
+            boardHistory: Object.entries(result.gridState || {}).map(([key, status]) => {
+                const [row, col] = key.split('-').map(Number);
+                return [row, col, status];
+            })
         };
 
         data[tableKey].push(gameRecord);

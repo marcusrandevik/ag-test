@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import storageService from '../services/StorageService';
 import ProgressChart from './ProgressChart';
+import Grid from './Grid';
 import i18n from '../i18n/i18n';
 
 const HistoryScreen = ({ onBack }) => {
@@ -155,6 +156,24 @@ const HistoryScreen = ({ onBack }) => {
                             <div className="modal-chart">
                                 <ProgressChart history={storageService.getGameHistory(selectedGame.selectedTables)} />
                             </div>
+
+                            {console.log('selectedGame:', selectedGame)}
+                            {console.log('boardHistory:', selectedGame.boardHistory)}
+
+                            {selectedGame.boardHistory && (
+                                <div className="modal-grid-history">
+                                    <h4>{i18n.t('history.boardState', 'Board State')}</h4>
+                                    <div className="grid-wrapper">
+                                        <Grid
+                                            gridState={selectedGame.boardHistory.reduce((acc, [row, col, status]) => {
+                                                acc[`${row}-${col}`] = status;
+                                                return acc;
+                                            }, {})}
+                                            selectedTables={selectedGame.selectedTables}
+                                        />
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
